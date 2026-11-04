@@ -6,6 +6,7 @@ import Icon from '../components/Icon.jsx';
 import ProductTile, { matches, isNew } from './ProductTile.jsx';
 import { useShop } from './shop.jsx';
 import { TYPE_LABEL, cls } from '../lib/util.js';
+import { JP } from './StoreLayout.jsx';
 
 const FACETS = {
   slab: [['pokemon', 'Pokémon'], ['grade', 'PSA grade'], ['language', 'Language'], ['set', 'Set'], ['era', 'Release era'], ['rarity', 'Rarity']],
@@ -93,7 +94,7 @@ export default function Catalog({ type, mode }) {
   const setPrice = (a, b) => { const next = new URLSearchParams(sp); a === null ? next.delete('min') : next.set('min', a); b === null ? next.delete('max') : next.set('max', b); next.delete('budget'); setSp(next, { replace: true }); };
   const clearAll = () => setSp(q ? { q } : {}, { replace: true });
 
-  const [title, sub] = mode ? MODE_TITLES[mode] : TITLES[type] || ['Shop all', 'Everything currently in the Daybreak case.'];
+  const [title, sub] = mode ? MODE_TITLES[mode] : TITLES[type] || ['The collection', 'Everything currently in the Daybreak case.'];
   const activeChips = [
     ...facetDefs.flatMap(([key]) => selected(key).map((v) => ({ key, v, label: v }))),
     ...(min !== null || max !== null ? [{ key: 'price', label: max === null ? `$${min}+` : `$${min || 0} to $${max}` }] : []),
@@ -141,25 +142,25 @@ export default function Catalog({ type, mode }) {
   );
 
   return (
-    <div className="wrap" style={{ paddingBottom: 120 }}>
+    <div className="wrap" style={{ paddingBottom: 40 }}>
       <div className="cat-head">
-        <div>
-          <div className="crumbs"><Link to="/">Home</Link><span>/</span><span>{title}</span></div>
-          <h1>{mode === 'search' ? (q ? `“${q}”` : 'Search') : title}</h1>
-          {(sub || mode === 'search') && <p className="muted" style={{ marginTop: 6, maxWidth: 620 }}>{mode === 'search' ? `${results.length} result${results.length === 1 ? '' : 's'} across slabs, singles, sealed and guards.` : sub}</p>}
-        </div>
+        <div className="crumbs"><Link to="/">Home</Link><span>/</span><span>{title}</span></div>
+        {(JP[type] || JP[mode]) && <span className="jp">{JP[type] || JP[mode]}</span>}
+        <h1>{mode === 'search' ? (q ? `“${q}”` : 'Search') : title}</h1>
+        {(sub || mode === 'search') && <p>{mode === 'search' ? `${results.length} result${results.length === 1 ? '' : 's'} across the collection.` : sub}</p>}
       </div>
       <div className="toolbar">
-        <button className="btn secondary sm" onClick={() => setOpen(true)}><Icon name="filter" size={16} /> Filter & sort{activeChips.length > 0 && <span className="badge solid" style={{ height: 18 }}>{activeChips.length}</span>}</button>
-        <select className="select" style={{ width: 'auto', height: 32, fontSize: 13 }} value={sort} onChange={(e) => setParam('sort', e.target.value === 'newest' ? null : e.target.value)} aria-label="Sort">
-          <option value="newest">Recently added</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option>
-          {type === 'slab' && <option value="grade">Grade: high to low</option>}<option value="name">Name A to Z</option>{mode === 'sold' && <option value="sold">Recently sold</option>}
+        <button className="tbtn" onClick={() => setOpen(true)}><Icon name="filter" size={15} stroke={1.4} /> Filter{activeChips.length > 0 ? ` (${activeChips.length})` : ''}</button>
+        <span className="sep" />
+        <select value={sort} onChange={(e) => setParam('sort', e.target.value === 'newest' ? null : e.target.value)} aria-label="Sort">
+          <option value="newest">Recently added</option><option value="price-asc">Price, low to high</option><option value="price-desc">Price, high to low</option>
+          {type === 'slab' && <option value="grade">Grade, high to low</option>}<option value="name">Name, A to Z</option>{mode === 'sold' && <option value="sold">Recently sold</option>}
         </select>
         <div className="active-filters">
-          {activeChips.map((c) => <button key={c.key + c.label} className="chip" onClick={() => (c.key === 'price' ? setPrice(null, null) : toggle(c.key, c.v))}>{c.label} <Icon name="x" size={12} /></button>)}
-          {activeChips.length > 0 && <button className="btn ghost sm" onClick={clearAll}>Clear all</button>}
+          {activeChips.map((c) => <button key={c.key + c.label} className="chip" onClick={() => (c.key === 'price' ? setPrice(null, null) : toggle(c.key, c.v))}>{c.label} <Icon name="x" size={11} /></button>)}
+          {activeChips.length > 0 && <button className="btn ghost sm" onClick={clearAll}>Clear</button>}
         </div>
-        <span className="muted small" style={{ marginLeft: 'auto' }}>{results.length} item{results.length === 1 ? '' : 's'}</span>
+        <span className="eyebrow muted" style={{ marginLeft: 'auto' }}>{results.length} {results.length === 1 ? 'piece' : 'pieces'}</span>
       </div>
       {sp.get('budget') && (
         <div className="row wrap" style={{ marginBottom: 16 }}>{PRICE_PRESETS.map(([l, a, b]) => <button key={l} className="chip" onClick={() => setPrice(a, b)}>{l}</button>)}</div>
@@ -175,7 +176,7 @@ export default function Catalog({ type, mode }) {
         </>
       )}
       {open && (
-        <Drawer title="Filters" onClose={() => setOpen(false)} footer={<button className="btn lg block" onClick={() => setOpen(false)}>Show {results.length} item{results.length === 1 ? '' : 's'}</button>}>
+        <Drawer title="Filter & sort" onClose={() => setOpen(false)} footer={<button className="btn lg block" onClick={() => setOpen(false)}>Show {results.length} {results.length === 1 ? 'piece' : 'pieces'}</button>}>
           {filterPanel}
         </Drawer>
       )}

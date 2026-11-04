@@ -4,7 +4,7 @@
 import { txTotals } from '../data/db.js';
 import { r2, startOfDay, TYPE_LABEL } from '../lib/util.js';
 
-export const SERIES = { s1: '#3B3BD1', s2: '#B8791C', grid: '#ebe8dc', axis: '#7a7a86' }; // validated pair (light surface)
+export const SERIES = { s1: '#2D5F9A', s2: '#B8791C', grid: 'rgba(18,49,86,0.09)', axis: '#7b8597' }; // validated pair: brand navy (lifted for legibility) + gold
 
 export const isSale = (t) => t.kind === 'sale' || t.kind === 'trade' || t.kind === 'refund';
 export function inRange(t, from, to = new Date()) { const d = new Date(t.at); return d >= from && d <= to; }

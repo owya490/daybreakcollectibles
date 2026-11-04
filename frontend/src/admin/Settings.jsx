@@ -20,8 +20,8 @@ export default function Settings() {
         <div className="panel span-6 stack">
           <h3>Brand & business</h3>
           <div className="row"><LogoMark size={64} /><div className="stack tight grow">
-            <label className="btn secondary sm" style={{ alignSelf: 'flex-start' }}><Icon name="upload" size={14} />Upload Daybreak logo<input type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files[0]; if (f) { set({ logoDataUrl: await fileToDataUrl(f, 600, 0.92) }); toast('Logo updated across the site'); } }} /></label>
-            <span className="tiny muted">Use the original crane-and-sun stamp file (PNG with transparency works best). It replaces the temporary placeholder everywhere.</span>
+            <label className="btn secondary sm" style={{ alignSelf: 'flex-start' }}><Icon name="upload" size={14} />Replace crest<input type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files[0]; if (f) { set({ logoDataUrl: await fileToDataUrl(f, 600, 0.92) }); toast('Logo updated across the site'); } }} /></label>
+            <span className="tiny muted">The Daybreak crest and wordmark are built into the site. Upload a replacement crest only if the mark changes.</span>
             {st.logoDataUrl && <button className="btn ghost sm" style={{ alignSelf: 'flex-start' }} onClick={() => set({ logoDataUrl: null })}>Remove</button>}
           </div></div>
           <div className="grid-2 collapse">

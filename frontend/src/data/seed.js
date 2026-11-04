@@ -168,11 +168,11 @@ export function seedTransactions() {
 }
 
 export const SEED_SETTINGS = {
-  business: { name: 'Daybreak Collectibles', email: 'hello@daybreakcollectibles.com.au', instagram: 'https://instagram.com/', abn: '', storefrontUrl: '' },
+  business: { name: 'Daybreak Collectibles', email: 'hello@daybreakcollectibles.com.au', instagram: 'https://instagram.com/daybreakcollectibles', abn: '', storefrontUrl: '' },
   logoDataUrl: null,
   banners: [
-    { id: 'b1', active: true, eyebrow: 'New this week', title: 'The Asian TCG specialist', subtitle: 'Japanese, Korean and Chinese Pokémon cards, PSA slabs and sealed product, hand-picked in Sydney.', cta: 'Shop new arrivals', link: '/new-arrivals' },
-    { id: 'b2', active: true, eyebrow: 'Daybreak Originals', title: 'Extended Art Guards', subtitle: 'Let the artwork run past the label. Designed in-house for standard PSA holders.', cta: 'Explore the guards', link: '/extended-art-guards' },
+    { id: 'b1', active: true, eyebrow: 'Buy · Sell · Trade', title: 'Rare cards, quietly curated.', subtitle: 'Japanese and Asian Pokémon cards, PSA slabs and sealed product. Chosen by hand in Sydney.', cta: 'Explore the collection', link: '/shop' },
+    { id: 'b2', active: true, eyebrow: 'Daybreak Originals', title: 'Let the artwork breathe.', subtitle: 'Extended Art Guards, designed in-house to carry the illustration past the PSA label.', cta: 'Discover the guards', link: '/extended-art-guards' },
   ],
   pricing: { mode: 'multiplier', margin: 10, multiplier: 1.1, rounding: 'whole', roundTo: 1 },
   fx: { usdAud: 1.52, eurAud: 1.65, jpyAud: 0.0102, updatedAt: new Date().toISOString(), source: 'Manual entry' },

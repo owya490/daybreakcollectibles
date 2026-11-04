@@ -42,6 +42,9 @@ function load() {
     if (raw) {
       const s = JSON.parse(raw);
       s.settings = { ...SEED_SETTINGS, ...s.settings, integrations: { ...SEED_SETTINGS.integrations, ...(s.settings?.integrations || {}) } };
+      // Brand refresh: replace the original placeholder copy if it was never edited
+      if (s.settings.banners?.[0]?.title === 'The Asian TCG specialist') s.settings.banners = SEED_SETTINGS.banners;
+      if (s.settings.business?.instagram === 'https://instagram.com/') s.settings.business = { ...s.settings.business, instagram: SEED_SETTINGS.business.instagram };
       return s;
     }
   } catch { /* storage unavailable or corrupt: fall back to fresh demo state */ }

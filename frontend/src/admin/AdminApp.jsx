@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDB, updateSettings, hasDemoData, getSaveError } from '../data/db.js';
-import Logo from '../components/Logo.jsx';
+import Logo, { LogoMark, Wordmark } from '../components/Logo.jsx';
 import Icon from '../components/Icon.jsx';
 import { Field, useLocalState, useToast } from '../components/ui.jsx';
 import { sha256, cls } from '../lib/util.js';
@@ -50,8 +50,8 @@ function Login({ onDone }) {
         } else if ((await sha256(pw)) === hash) onDone();
         else toast('Incorrect passcode', 'err');
       }}>
-        <Logo />
-        <h1 className="serif" style={{ fontSize: 30, color: 'var(--indigo)', marginTop: 8 }}>{setup ? 'Set up admin access' : 'Admin sign in'}</h1>
+        <div className="row" style={{ justifyContent: 'center', flexDirection: 'column', gap: 14 }}><LogoMark size={86} /><Wordmark height={34} /></div>
+        <h1 className="serif center" style={{ fontSize: 28, color: 'var(--navy-deep)', marginTop: 8 }}>{setup ? 'Set up admin access' : 'Admin sign in'}</h1>
         <p className="small muted">{setup ? 'Create a passcode for this device. You can change it in Settings.' : 'Enter your Daybreak admin passcode.'}</p>
         <Field label="Passcode"><input className="input lg" type="password" autoFocus value={pw} onChange={(e) => setPw(e.target.value)} autoComplete={setup ? 'new-password' : 'current-password'} /></Field>
         {setup && <Field label="Confirm passcode"><input className="input lg" type="password" value={pw2} onChange={(e) => setPw2(e.target.value)} autoComplete="new-password" /></Field>}
@@ -80,7 +80,7 @@ export default function AdminApp() {
     <div className={cls('admin', collapsed && 'collapsed', mopen && 'mopen')}>
       {mopen && <div className="scrim" style={{ zIndex: 85 }} onClick={() => setMopen(false)} />}
       <aside className="side" aria-label="Admin navigation">
-        <div className="side-top"><Logo inverse size={34} /></div>
+        <div className="side-top"><LogoMark size={40} /><Wordmark inverse height={26} /></div>
         <NavLink to="/admin/show" className="show-mode"><Icon name="bolt" size={18} /><span className="lbl">Card Show Mode</span></NavLink>
         {NAV.map((g) => (
           <div className="side-group" key={g.h}>

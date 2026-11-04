@@ -39,7 +39,7 @@ All sample products, customers and sales are flagged and labelled "Sample". Remo
 
 ## Brand
 
-Upload the real crane-and-sun stamp in *Admin › Settings › Brand*. Until then a plain temporary "DB" seal is shown; the logo itself has not been redrawn.
+The official assets are built in (`src/assets/brand/`): the crane-and-sun crest, the DAYBREAK / COLLECTIBLES wordmark with the 朝の光 seal (navy and cream versions), and the cloud band from the booth banner. Colours are sampled from those files: navy `#123156`, deep navy `#0A1F3B`, cream `#F2E8CE`, vermilion `#AF3834`. Type: Bodoni Moda for display, Inter for text, Noto Serif JP for Japanese accents.
 
 ## Deploying (Vercel)
 

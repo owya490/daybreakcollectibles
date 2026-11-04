@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useDB, recordTransaction, creditBalance, productById, unitById, availableQty, queueOutbox, flushOutbox } from '../data/db.js';
 import { useToast, MoneyInput, ProductImage, useOnline, useLocalState, Modal } from '../components/ui.jsx';
 import Icon from '../components/Icon.jsx';
-import Logo from '../components/Logo.jsx';
+import { LogoMark, Wordmark } from '../components/Logo.jsx';
 import { InventoryPicker } from './common.jsx';
 import { CustomerPicker, IncomingList, PaymentSplit } from './parts.jsx';
 import { Receipt } from './Transactions.jsx';
@@ -133,7 +133,7 @@ export default function POS({ showMode }) {
   return (
     <div className="showmode">
       <div className="showmode-top">
-        <Logo inverse size={30} />
+        <LogoMark size={34} /><Wordmark inverse height={22} style={{ marginRight: 4 }} />
         <span className="badge cream">Card Show Mode</span>
         <span className="small" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}><span className={cls('online-dot', !online && 'off')} />{online ? 'Online' : `Offline · ${s.outbox.length} queued`}</span>
         <Link to="/admin" className="btn cream sm">Exit</Link>

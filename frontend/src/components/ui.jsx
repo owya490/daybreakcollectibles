@@ -2,7 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import QRCode from 'qrcode';
 import JsBarcode from 'jsbarcode';
 import Icon from './Icon.jsx';
-import { cls, TYPE_LABEL } from '../lib/util.js';
+import { cls } from '../lib/util.js';
+import { BRAND } from './Logo.jsx';
 
 // ---------- Toasts ----------
 const ToastCtx = createContext(() => {});
@@ -100,11 +101,10 @@ export function ProductImage({ product, index = 0, className, square, slab, alt,
       {img?.url && !broken ? (
         <img src={img.url} alt={alt || product?.name || ''} loading="lazy" decoding="async" onError={() => setBroken(true)} referrerPolicy="no-referrer" />
       ) : (
-        <div className={cls('placeholder', product?.type === 'guard' && 'cream')}>
-          <div className="ph-sun" />
+        <div className="placeholder">
+          <img className="ph-crest" src={BRAND.crest} alt="" aria-hidden="true" />
           {!compact && <div className="ph-title">{product?.name || 'Product'}</div>}
-          <div className="ph-note">{note || (broken ? 'Image unavailable' : product?.type === 'guard' ? 'Product photo pending' : product?.type === 'sealed' ? 'Product photo pending' : 'Photo pending')}</div>
-          {product?.type && !compact && <div className="ph-note" style={{ opacity: 0.55 }}>{TYPE_LABEL[product.type]}</div>}
+          <div className="ph-note">{note || (broken ? 'Image unavailable' : 'Photograph to follow')}</div>
         </div>
       )}
     </div>

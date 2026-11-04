@@ -3,7 +3,7 @@ import { SERIES } from './metrics.js';
 import { aud } from '../lib/util.js';
 
 const axis = { stroke: SERIES.axis, fontSize: 11, tickLine: false, axisLine: false };
-const tip = { contentStyle: { borderRadius: 10, border: '1px solid #e4e0d0', fontSize: 12.5, boxShadow: '0 6px 20px rgba(0,0,40,0.08)' }, cursor: { fill: 'rgba(59,59,209,0.06)', stroke: SERIES.s1, strokeWidth: 1 } };
+const tip = { contentStyle: { borderRadius: 10, border: '1px solid #e4e0d0', fontSize: 12.5, boxShadow: '0 6px 20px rgba(0,0,40,0.08)' }, cursor: { fill: 'rgba(45,95,154,0.07)', stroke: SERIES.s1, strokeWidth: 1 } };
 const money = (v) => aud(v, { round: true });
 const short = (v) => (Math.abs(v) >= 1000 ? `$${(v / 1000).toFixed(1)}k` : `$${Math.round(v)}`);
 

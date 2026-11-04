@@ -22,7 +22,8 @@ export default function Sets() {
   }, [all, lang]);
   return (
     <div className="wrap" style={{ paddingBottom: 120 }}>
-      <div className="cat-head" style={{ justifyContent: 'center', textAlign: 'center', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="cat-head">
+        <span className="jp">セット</span>
         <h1>Shop by set</h1>
         <Seg value={lang} onChange={setLang} options={langs.map((x) => ({ value: x, label: x === 'All' ? 'All' : LANG_SHORT[x] || x }))} />
       </div>
@@ -32,10 +33,10 @@ export default function Sets() {
             <Link key={x.set} className="set-row" to={`/shop?set=${encodeURIComponent(x.set)}`}>
               <div className="code">{(x.code || '').toUpperCase().slice(0, 7) || '·'}</div>
               <div className="grow">
-                <div style={{ fontWeight: 600 }}>{x.set}</div>
-                <div className="small muted">{[x.year, `${x.count} item${x.count === 1 ? '' : 's'}`, [...x.langs].map((l) => LANG_SHORT[l] || l).join(' / ')].filter(Boolean).join(' · ')}</div>
+                <div className="nm">{x.set}</div>
+                <div className="eyebrow muted" style={{ marginTop: 4 }}>{[x.year, `${x.count} item${x.count === 1 ? '' : 's'}`, [...x.langs].map((l) => LANG_SHORT[l] || l).join(' / ')].filter(Boolean).join(' · ')}</div>
               </div>
-              <span className="muted">›</span>
+              <span className="muted">→</span>
             </Link>
           ))}
         </div>
