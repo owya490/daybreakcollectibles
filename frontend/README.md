@@ -43,7 +43,7 @@ The official assets are built in (`src/assets/brand/`): the crane-and-sun crest,
 
 ## Deploying (Vercel)
 
-1. Push this folder to GitHub and import it in Vercel (framework: Vite). `vercel.json` handles SPA routes.
+1. Import the repo in Vercel and set the Root Directory to `frontend`. `vercel.json` tells Vercel this is a Vite app: build with `npm run build`, publish the `dist` folder, and send page routes to `index.html`.
 2. Environment variables (only for the integrations you use): `PSA_TOKEN`, `SCRYDEX_API_KEY`, `SCRYDEX_TEAM_ID`, `STRIPE_SECRET_KEY`.
 3. In *Admin › API Integrations*, set the proxy URLs: `https://your-domain/api/psa`, `https://your-domain/api/scrydex`, and checkout endpoint `/api/checkout` with your Stripe publishable key.
 
